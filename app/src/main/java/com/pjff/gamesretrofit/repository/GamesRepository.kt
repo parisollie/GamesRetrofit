@@ -2,7 +2,9 @@ package com.pjff.gamesretrofit.repository
 
 import com.pjff.gamesretrofit.data.ApiGames
 import com.pjff.gamesretrofit.model.GameList
+import com.pjff.gamesretrofit.model.GamesModel
 import com.pjff.gamesretrofit.model.SingleGameModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
@@ -15,6 +17,13 @@ class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
             return response.body()?.results
         }
         return null
+    }
+
+    //Vid 229
+    suspend fun getGamesPaging(page: Int, pageSize: Int): GamesModel {
+        //Vid 233
+        delay(3000L)
+        return apiGames.getGamesPaging(page, pageSize)
     }
 
     //vid 149
