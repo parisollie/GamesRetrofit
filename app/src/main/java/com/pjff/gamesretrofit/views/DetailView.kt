@@ -33,10 +33,17 @@ import com.pjff.gamesretrofit.viewModel.GamesViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 //Vid 148,
-fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int) {
+//Vid 228, ponemos name:String?
+fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int,name:String?) {
     //Vid 149
     LaunchedEffect(Unit) {
-        viewModel.getGameById(id)
+        //viewModel.getGameById(id)
+        if (id == 0){
+            //Le ponemos gion para remplazar los espacios Resident Evil
+            name?.let { viewModel.getGameByName(it.replace(" ","-")) }
+        }else {
+            viewModel.getGameById(id)
+        }
     }
 
     //Vid 153

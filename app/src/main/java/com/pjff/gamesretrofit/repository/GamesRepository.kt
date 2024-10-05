@@ -26,4 +26,14 @@ class GamesRepository @Inject constructor(private val apiGames: ApiGames) {
         return null
     }
 
+    //Vid 226
+
+    suspend fun getGameByName(name: String): SingleGameModel? {
+        val response = apiGames.getGameByName(name)
+        if(response.isSuccessful){
+            return response.body()
+        }
+        return null
+    }
+
 }
